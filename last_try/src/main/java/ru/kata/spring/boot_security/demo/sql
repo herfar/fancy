@@ -1,0 +1,25 @@
+create table user (id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                    first_name varchar(255) not null,
+                    last_name varchar(2255) not null,
+                    email varchar(255) not null,
+                    password varchar(255) not null);
+
+create table roles (id bigint not null auto_increment primary key,
+                     name varchar(255) not null);
+
+create table users_roles (user_id bigint not null,
+                           roles_id bigint not null,
+                            primary key (user_id, roles_id),
+                            foreign key (user_id) references user (id),
+                            foreign key (roles_id) references roles (id));
+
+insert into roles (name)
+        values ('ROLE_USER'), ('ROLE_ADMIN');
+
+insert into user (first_name, last_name, email, password)
+        values ('shrek',
+                'musor',
+                'shrek_musor@gmail.com',
+                '$2a$12$qCgc1xW.S689RRH6eGZJnOyPFJDhIxPOInk7jGHYHLkvD7NVxmfmS');
+insert into users_roles (user_id, roles_id)
+        values (1,1);
